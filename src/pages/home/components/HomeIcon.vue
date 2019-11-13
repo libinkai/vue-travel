@@ -59,7 +59,7 @@ export default {
         {
           id: '8',
           url: 'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/338c5b924c5809e8c7b14f60a953c3e2.png',
-          description: '重庆欢乐谷重庆欢乐谷'
+          description: '重庆欢乐谷'
         },
         {
           id: '9',
