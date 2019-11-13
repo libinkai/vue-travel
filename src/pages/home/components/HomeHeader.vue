@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'HomeHeader'
 }
 </script>
 <!-- scoped说明只对当前组件有效 -->
