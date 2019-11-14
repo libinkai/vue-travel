@@ -15,6 +15,7 @@ import HomeIcon from './components/HomeIcon'
 import HomeRecommend from './components/HomeRecommend'
 import HomeWeekend from './components/HomeWeekend'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 export default {
   name: 'Home',
@@ -26,12 +27,13 @@ export default {
     HomeWeekend
   },
   mounted () {
+    this.lastCity = this.city
     this.getHomeData()
   },
   methods: {
     getHomeData () {
       // 在config index.js下配置了请求转发
-      axios.get('/api/index.json').then(this.getHomeDataSuccess)
+      axios.get('/api/index.json?city=' + this.city).then(this.getHomeDataSuccess)
     },
     getHomeDataSuccess (res) {
       res = res.data
@@ -46,10 +48,21 @@ export default {
   },
   data () {
     return {
+      lastCity: '',
       swiperList: [],
       iconList: [],
       recommendList: [],
       weekendList: []
+    }
+  },
+  computed: {
+    ...mapState(['city'])
+  },
+  activated () {
+    // 每次切换页面时，都会触发activated
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeData()
     }
   }
 }
