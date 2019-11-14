@@ -1,10 +1,10 @@
 <template>
   <div>
-    <home-header></home-header>
-    <home-swiper></home-swiper>
-    <home-icon></home-icon>
-    <home-recommend></home-recommend>
-    <HomeWeekend></HomeWeekend>
+    <home-header :city="city"></home-header>
+    <home-swiper :list="swiperList"></home-swiper>
+    <home-icon :list="iconList"></home-icon>
+    <home-recommend :list="recommendList"></home-recommend>
+    <HomeWeekend :list="weekendList"></HomeWeekend>
   </div>
 </template>
 
@@ -34,7 +34,25 @@ export default {
       axios.get('/api/index.json').then(this.getHomeDataSuccess)
     },
     getHomeDataSuccess (res) {
-      console.log(res)
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        console.log(data)
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
+  },
+  data () {
+    return {
+      city: '城市',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
     }
   }
 }

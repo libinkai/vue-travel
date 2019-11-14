@@ -2,11 +2,11 @@
     <div>
       <div class="recommend-title">热销推荐</div>
       <ul>
-        <li class="recommend-item border-bottom" v-for="item of recommendList" :key="item.id">
-          <img class="item-img" :src="item.url"/>
+        <li class="recommend-item border-bottom" v-for="item of list" :key="item.id">
+          <img class="item-img" :src="item.imgUrl"/>
           <div class="item-info-wrapper">
             <p class="item-info-title">{{item.title}}</p>
-            <p class="item-info-description">{{item.description}}</p>
+            <p class="item-info-description">{{item.desc}}</p>
             <button class="item-info-details-button">查看详情</button>
           </div>
         </li>
@@ -17,29 +17,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [
-        {
-          id: '1',
-          url: 'https://imgs.qunarzz.com/sight/p0/1805/ad/ad507355a167f587a3.img.jpg_200x200_97ec1966.jpg',
-          title: '重庆长江索道',
-          description: '重庆长江索道重庆长江索道重庆长江索道重庆长江索道重庆长江索道重庆长江索道'
-        },
-        {
-          id: '2',
-          url: 'https://imgs.qunarzz.com/sight/p0/1805/ad/ad507355a167f587a3.img.jpg_200x200_97ec1966.jpg',
-          title: '重庆长江索道',
-          description: '重庆长江索道重庆长江索道重庆长江索道重庆长江索道重庆长江索道重庆长江索道'
-        },
-        {
-          id: '3',
-          url: 'https://imgs.qunarzz.com/sight/p0/1805/ad/ad507355a167f587a3.img.jpg_200x200_97ec1966.jpg',
-          title: '重庆长江索道',
-          description: '重庆长江索道重庆长江索道重庆长江索道重庆长江索道重庆长江索道重庆长江索道'
-        }
-      ]
-    }
+  props: {
+    list: Array
   }
 }
 </script>

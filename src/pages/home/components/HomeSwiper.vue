@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="list.length">
       <!-- slides -->
-      <swiper-slide v-for="item of swiperList" :key="item.id">
-        <img class="swiper-image" :src="item.url"/>
+      <swiper-slide v-for="item of list" :key="item.id">
+        <img class="swiper-image" :src="item.imgUrl"/>
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
@@ -14,6 +14,9 @@
 export default {
   // swiper组件的name属性不能和组件名相同
   name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {
