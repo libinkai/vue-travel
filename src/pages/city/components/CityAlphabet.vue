@@ -4,7 +4,7 @@
         :key="item"
         :ref="item"
         @click="handelClickLetter"
-        @touchstart="handelTouchStart"
+        @touchstart.prevent="handelTouchStart"
         @touchmove="handelTouchMove"
         @touchend="handelTouchEnd">{{item}}</li>
   </ul>

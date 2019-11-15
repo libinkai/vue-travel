@@ -1,6 +1,6 @@
 <template>
   <div>
-    <details-banner></details-banner>
+    <details-banner :sigthName="sigthName" :bannerImg="bannerImg" :galleryImgs="galleryImgs"></details-banner>
     <details-header></details-header>
     <div class="content">
       <details-list :list="list"></details-list>
@@ -12,6 +12,7 @@
 import DetailsBanner from './components/Banner'
 import DetailsHeader from './components/Header'
 import DetailsList from './components/List'
+import axios from 'axios'
 
 export default {
   name: 'Details',
@@ -22,28 +23,34 @@ export default {
   },
   data () {
     return {
-      list: [
-        {
-          title: '成人票',
-          list: [
-            {
-              title: '成人五馆联票'
-            },
-            {
-              title: '成人三馆联票'
-            }
-          ]
-        },
-        {
-          title: '学生票'
-        },
-        {
-          title: '特惠票'
-        },
-        {
-          title: '儿童票'
+      sigthName: '',
+      bannerImg: '',
+      galleryImgs: [],
+      list: []
+    }
+  },
+  mounted () {
+    this.getDetailsData()
+  },
+  methods: {
+    getDetailsData () {
+      // axios.get('/api/detail.json?' + this.$route.params.id)
+      axios.get('/api/detail.json', {
+        params: {
+          id: this.$route.params.id
         }
-      ]
+      }).then(this.handelGetDataSuccess)
+    },
+    handelGetDataSuccess (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        // console.log(data)
+        this.sigthName = data.sigthName
+        this.bannerImg = data.bannerImg
+        this.galleryImgs = data.galleryImgs
+        this.list = data.categoryList
+      }
     }
   }
 }

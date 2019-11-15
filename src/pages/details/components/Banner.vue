@@ -1,21 +1,30 @@
 <template>
   <div>
     <div class="banner" @click="handelClickBanner">
-      <img class="banner-img" src="http://img1.qunarzz.com/sight/p0/1910/83/83831f1889580ea2a3.img.jpg_r_800x800_9295dad7.jpg"/>
+      <img class="banner-img" :src="bannerImg"/>
       <div class="banner-info">
-        <div class="banner-title">重庆动物园(AAAA景区)</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number"><span class="iconfont banner-icon">&#xe692;</span>39</div>
       </div>
     </div>
-    <gallery :images="images" v-show="showGallery" @gallery-close="handelGalleryClose"></gallery>
+    <fade-animation>
+      <gallery :images="galleryImgs" v-show="showGallery" @gallery-close="handelGalleryClose"></gallery>
+    </fade-animation>
   </div>
 </template>
 <script>
 import Gallery from 'common/gallery/Gallery'
+import FadeAnimation from 'common/fade/Fade'
 export default {
   name: 'Banner',
   components: {
-    Gallery
+    Gallery,
+    FadeAnimation
+  },
+  props: {
+    sightName: String,
+    bannerImg: String,
+    galleryImgs: Array
   },
   data () {
     return {
